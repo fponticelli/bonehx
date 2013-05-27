@@ -1,0 +1,7 @@
+-main Leds
+-cp src
+-cp examples
+-dce full
+-lib nodehx
+-js bin/examples/leds.js
+--times

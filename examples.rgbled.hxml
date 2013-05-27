@@ -1,0 +1,9 @@
+-main RGBLed
+-cp src
+-cp examples
+-dce full
+-lib nodehx
+-lib thx-core
+-lib thx-color
+-js bin/examples/rgbled.js
+--times

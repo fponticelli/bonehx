@@ -1,0 +1,8 @@
+-main Humidity
+-cp src
+-cp examples
+-dce full
+-lib nodehx
+-lib thx-core
+-js bin/examples/humidity.js
+--times
