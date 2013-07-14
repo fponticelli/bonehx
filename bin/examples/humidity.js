@@ -25,8 +25,13 @@ js.Node.setTimeout = setTimeout;
 js.Node.clearTimeout = clearTimeout;
 js.Node.setInterval = setInterval;
 js.Node.clearInterval = clearInterval;
-js.Node.setImmediate = setImmediate;
-js.Node.clearImmediate = clearImmediate;
+if('undefined' === typeof setImmediate) {
+	js.Node.setImmediate = function(h) { setTimeout(h,0); }
+	js.Node.clearImmediate = clearTimeout;
+} else {
+	js.Node.setImmediate = setImmediate;
+	js.Node.clearImmediate = clearImmediate;
+}
 js.Node.global = global;
 js.Node.process = process;
 js.Node.require = require;
