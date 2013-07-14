@@ -46,10 +46,11 @@ extern class Bone
 // writeTextFile
 
 	static var pins : {
-		USR0 : PinGPIOInfo,
-		USR1 : PinGPIOInfo,
-		USR2 : PinGPIOInfo,
-		USR3 : PinGPIOInfo,
+		USR0 : PinLedInfo,
+		USR1 : PinLedInfo,
+		USR2 : PinLedInfo,
+		USR3 : PinLedInfo,
+
 		P8_1 : PinInfo,
 		P8_2 : PinInfo,
 		P8_3 : PinEpromInfo,
@@ -191,10 +192,13 @@ typedef PinAinInfo = {> PinInfo,
 
 typedef PinGPIOInfo = {> PinInfo,
 	gpio : Int,
-	led : String,
 	mux : String,
 	muxRegOffset : String,
 	options : Array<String>
+}
+
+typedef PinLedInfo = {> PinGPIOInfo,
+	led : String
 }
 
 typedef PinEpromInfo = {> PinGPIOInfo,
