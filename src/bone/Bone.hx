@@ -14,8 +14,18 @@ extern class Bone
 	static function getPinMode(pin : String, ?callback : PinMode -> Void) : PinMode;
 	// callback seems to be broken in the implementation
 	static function shiftOut(dataPin : String, clockPin : String, bitOrder : Int, val : Float, ?callback : Void -> Void) : Void;
-	static function getPlatform(?callback : Platform -> Void) : Platform;	
 
+	@:overload(function(filename : String, callback : String -> Void) : Void {})
+	static function readTextFile(filename : String) : String;
+	@:overload(function(filename : String, data : String, callback : String -> Void) : Void {})
+	static function writeTextFile(filename : String, data : String) : String;
+	@:overload(function(callback : PlatformInfo -> Void) : Void {})
+	static function getPlatform() : PlatformInfo;
+	@:overload(function(date : String, callback : Dynamic -> Void) : Void {})
+	static function setDate(date : String) : Void;
+
+	static function serialOpen(port : String, options : Dynamic, ?callback : { ?err : String, ?event : String, ?data : Dynamic } -> Void) : Bool;
+	static function serialWrite(port : String, data : Dynamic, ?callback : { ?err : String, ?event : String, ?results : Dynamic } -> Void) : Bool;
 	
 	static function lowByte(value : Int) : Int;
 	static function highByte(value : Int) : Int;
@@ -39,11 +49,6 @@ extern class Bone
 	static var CHANGE(default, null) : String;
 	static var RISING(default, null) : String;
 	static var FALLING(default, null) : String;
-
-// TODO
-// setDate
-// readTextFile
-// writeTextFile
 
 	static var pins : {
 		USR0 : PinLedInfo,
@@ -157,10 +162,11 @@ extern class Bone
 	}
 }
 
-typedef Platform = {
-	platform : String,
+typedef PlatformInfo = {
+	platform : Bone,
 	name: String,
-	bonescript : String
+	bonescript : String,
+	?serialNumber : String
 }
 
 typedef PinMode = {
