@@ -9,10 +9,10 @@ class RGBLed
 	{
 		reset();
 
-		var led = new RGBLed("P8_19", "P9_14", "P8_13"),
+		var led = new RGBLed("P8_19", "P9_14", "P8_13", false),
 			hsl = new HSL(0, 1, 0.5);
 
-		N.setInterval(function() {
+		js.Node.setInterval(function() {
 			led.setColor(hsl);
 			hsl.hue++;
 		}, 20);

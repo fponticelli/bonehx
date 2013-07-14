@@ -2,7 +2,7 @@
 -cp src
 -cp examples
 -dce full
--lib nodehx
+-lib nodejs
 -lib thx-core
 -js bin/examples/humidity.js
 --times

@@ -2,8 +2,9 @@
 -cp src
 -cp examples
 -dce full
--lib nodehx
+-lib nodejs
 -lib thx-core
 -lib thx-color
 -js bin/examples/rgbled.js
 --times
+-cmd cp bin/examples/rgbled.js /Volumes/homes/projects/nodes/rgbled.js

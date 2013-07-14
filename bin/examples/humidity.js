@@ -7,22 +7,32 @@ var Humidity = function(pin,supplyVolt) {
 Humidity.main = function() {
 	var pin = "P9_39", temp = 25;
 	var humidity = new Humidity(pin);
-	setInterval(function() {
+	js.Node.setInterval(function() {
 		console.log("humidity: " + humidity.get(temp));
 	},2000);
 }
 Humidity.prototype = {
 	get: function(degreesCelsius) {
-		console.log(this.pin);
-		console.log(bone.Bone.analogRead(this.pin));
 		var reading = bone.Bone.analogRead(this.pin), voltage = reading / 1023.0 * this.supplyVolt, sensorRH = 161.0 * voltage / this.supplyVolt - 25.8;
 		return sensorRH / (1.0546 - 0.0026 * degreesCelsius);
 	}
 }
+var js = {}
+js.Node = function() { }
 var bone = "undefined" !== typeof bone ? bone : {};
 bone.Bone = require("bonescript");
-var node = "undefined" !== typeof node ? node : {};
-node.events = "undefined" !== typeof node.events ? node.events : {};
-node.events.EventEmitter = require("events").EventEmitter;
+js.Node.setTimeout = setTimeout;
+js.Node.clearTimeout = clearTimeout;
+js.Node.setInterval = setInterval;
+js.Node.clearInterval = clearInterval;
+js.Node.setImmediate = setImmediate;
+js.Node.clearImmediate = clearImmediate;
+js.Node.global = global;
+js.Node.process = process;
+js.Node.require = require;
+js.Node.console = console;
+js.Node.module = module;
+js.Node.stringify = JSON.stringify;
+js.Node.parse = JSON.parse;
 Humidity.main();
 })();

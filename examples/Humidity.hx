@@ -8,7 +8,7 @@ class Humidity
 			temp = 25;
 
 		var humidity = new Humidity(pin);
-		N.setInterval(function() {
+		js.Node.setInterval(function() {
 			trace('humidity: ${humidity.get(temp)}');
 		}, 2000);
 	}
@@ -23,8 +23,6 @@ class Humidity
 
 	public function get(degreesCelsius : Float)
 	{
-trace(pin);
-trace(Bone.analogRead(pin));
 		var reading = Bone.analogRead(pin),
 			voltage = reading / 1023.0 * supplyVolt,
 			sensorRH = 161.0 * voltage / supplyVolt - 25.8;

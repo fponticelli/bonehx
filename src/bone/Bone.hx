@@ -47,7 +47,7 @@ extern class Bone
 
 	static function __init__() : Void
 	{
-		node.Link.module("bone.Bone", "bonescript");
+		nodejs.Extern.link("bone.Bone", "bonescript");
 	}
 }
 

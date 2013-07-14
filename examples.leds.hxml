@@ -2,6 +2,6 @@
 -cp src
 -cp examples
 -dce full
--lib nodehx
+-lib nodejs
 -js bin/examples/leds.js
 --times

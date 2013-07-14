@@ -10,7 +10,7 @@ class Leds
 				Bone.digitalWrite(pin, Bone.LOW);
 			});
 		var pointer = new Pointer(leds.length);
-		N.setInterval(function() {
+		js.Node.setInterval(function() {
 			pointer.next();
 			leds.map(function (pin) {
 				Bone.digitalWrite(pin, pin != leds[pointer.index] ? Bone.LOW : Bone.HIGH);
