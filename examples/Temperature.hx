@@ -6,14 +6,17 @@ class Temperature
 {
 	public static function main()
 	{
-		var port   = '/dev/i2c-1';
-		TMP102.open(port, function(tmp102 : TMP102) {
-			Node.setInterval(function() {
-				tmp102.read(function(temp) {
-					trace('Temperature: ${format(temp)}c (${format(TMP102.convertToFahrenheit(temp))}f)');
-				});
-			}, 1000);
-		});
+		var port   = '/dev/i2c-1',
+			tmp102 = TMP102.open(port);
+
+		function read()	
+		{
+			tmp102.readCelsius(function(celsius) {
+				trace('${Date.now()} Temperature: ${format(celsius)}°C (${format(TMP102.convertToFahrenheit(celsius))}°F)');
+				Node.setTimeout(read, 2000);
+			});
+		}
+		read();
 	}
 
 	static function format(v : Float)

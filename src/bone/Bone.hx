@@ -27,11 +27,13 @@ extern class Bone
 	static function serialOpen(port : String, options : Dynamic, ?callback : { ?err : String, ?event : String, ?data : Dynamic } -> Void) : Bool;
 	static function serialWrite(port : String, data : Dynamic, ?callback : { ?err : String, ?event : String, ?results : Dynamic } -> Void) : Bool;
 	
+	@:overload(function(port : String) : Int {})
+	static function i2cReadByte(port : String, callback : { ?err : String, ?res : Int } -> Void) : Void;
+	
 	static function i2cOpen(port : String, address : Int, options : Dynamic, ?callback : { ?err : String, ?event : String, ?data : Dynamic } -> Void) : Void;
 	static function i2cScan(port : String, ?callback : { ?err : String, ?data : Dynamic } -> Void) : Void;
 	static function i2cWriteByte(port : String, byte : Int, ?callback : { ?err : String } -> Void) : Void;
 	static function i2cWriteBytes(port : String, command : Dynamic, bytes : Dynamic, ?callback : { ?err : String } -> Void) : Void;
-	static function i2cReadByte(port : String, ?callback : { ?err : String, ?res : Int } -> Void) : Void;
 	static function i2cReadBytes(port : String, command : Dynamic, length : Int, ?callback : { ?err : String, ?res : Dynamic, event : String } -> Void) : Void;
 	static function i2cStream(port : String, command : Dynamic, length : Int, delay : Dynamic, ?callback : Void -> Void) : Void;
 
