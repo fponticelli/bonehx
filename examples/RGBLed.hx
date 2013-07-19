@@ -14,7 +14,7 @@ class RGBLed
 
 		js.Node.setInterval(function() {
 			led.setColor(hsl);
-			hsl.hue++;
+			hsl.hue+=1;
 		}, 20);
 	}
 

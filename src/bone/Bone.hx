@@ -27,6 +27,14 @@ extern class Bone
 	static function serialOpen(port : String, options : Dynamic, ?callback : { ?err : String, ?event : String, ?data : Dynamic } -> Void) : Bool;
 	static function serialWrite(port : String, data : Dynamic, ?callback : { ?err : String, ?event : String, ?results : Dynamic } -> Void) : Bool;
 	
+	static function i2cOpen(port : String, address : Int, options : Dynamic, ?callback : { ?err : String, ?event : String, ?data : Dynamic } -> Void) : Void;
+	static function i2cScan(port : String, ?callback : { ?err : String, ?data : Dynamic } -> Void) : Void;
+	static function i2cWriteByte(port : String, byte : Int, ?callback : { ?err : String } -> Void) : Void;
+	static function i2cWriteBytes(port : String, command : Dynamic, bytes : Dynamic, ?callback : { ?err : String } -> Void) : Void;
+	static function i2cReadByte(port : String, ?callback : { ?err : String, ?res : Int } -> Void) : Void;
+	static function i2cReadBytes(port : String, command : Dynamic, length : Int, ?callback : { ?err : String, ?res : Dynamic, event : String } -> Void) : Void;
+	static function i2cStream(port : String, command : Dynamic, length : Int, delay : Dynamic, ?callback : Void -> Void) : Void;
+
 	static function lowByte(value : Int) : Int;
 	static function highByte(value : Int) : Int;
 	static function bitRead(value : Int, bitnum : Int) : Int;
@@ -153,6 +161,7 @@ extern class Bone
 
 	static var pinIndex : Array<PinInfo>;
 	static var uarts : Dynamic<UartInfo>;
+	static var i2c : Dynamic<I2CEmpty>;
 	static inline function getUart(dev : String) : UartInfo
 		return Reflect.field(uarts, dev);
 
@@ -160,6 +169,20 @@ extern class Bone
 	{
 		nodejs.Extern.link("bone.Bone", "bonescript");
 	}
+}
+
+typedef I2CEmpty = {
+
+}
+
+typedef I2C = {> I2CEmpty,
+	path : String,
+	sda  : String,
+	scl  : String
+}
+
+typedef I2CDeviceTree = {> I2C,
+	devicetree : String
 }
 
 typedef PlatformInfo = {

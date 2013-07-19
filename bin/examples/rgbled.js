@@ -15,9 +15,8 @@ RGBLed.main = function() {
 	var led = new RGBLed("P8_19","P9_14","P8_13",false), hsl = new thx.color.HSL(0,1,0.5);
 	js.Node.setInterval(function() {
 		led.setColor(hsl);
-		var _g = hsl, _g1 = _g.get_hue();
-		_g.set_hue(_g1 + 1);
-		_g1;
+		var _g = hsl;
+		_g.set_hue(_g.get_hue() + 1);
 	},20);
 }
 RGBLed.reset = function() {

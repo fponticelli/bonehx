@@ -5,11 +5,23 @@ var Humidity = function(pin,supplyVolt) {
 	this.supplyVolt = supplyVolt;
 };
 Humidity.main = function() {
-	var pin = "P9_39", temp = 25;
+	var pin = "P9_38", temp = 30, delay = 250;
 	var humidity = new Humidity(pin);
-	js.Node.setInterval(function() {
-		console.log("humidity: " + humidity.get(temp));
-	},2000);
+	var poll = (function() {
+		var reading = 0;
+		var print = (function($this) {
+			var $r;
+			var print1 = null;
+			print1 = function() {
+				console.log("" + ++reading + ". humidity: " + humidity.get(temp));
+				js.Node.setTimeout(print1,delay);
+			};
+			$r = print1;
+			return $r;
+		}(this));
+		return print;
+	})();
+	poll();
 }
 Humidity.prototype = {
 	get: function(degreesCelsius) {

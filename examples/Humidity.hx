@@ -4,13 +4,22 @@ class Humidity
 {
 	public static function main()
 	{
-		var pin = 'P9_39',
-			temp = 25;
+		var pin   = 'P9_38',
+			temp  = 30,
+			delay = 250;
 
 		var humidity = new Humidity(pin);
-		js.Node.setInterval(function() {
-			trace('humidity: ${humidity.get(temp)}');
-		}, 2000);
+
+		var poll = (function() {
+				var reading = 0;
+				function print() {
+					trace('${++reading}. humidity: ${humidity.get(temp)}');
+					js.Node.setTimeout(print, delay);
+				};
+				return print;
+			})();
+
+		poll();
 	}
 
 	var pin : String;
@@ -26,7 +35,6 @@ class Humidity
 		var reading = Bone.analogRead(pin),
 			voltage = reading / 1023.0 * supplyVolt,
 			sensorRH = 161.0 * voltage / supplyVolt - 25.8;
-
 		return sensorRH / (1.0546 - 0.0026 * degreesCelsius);
 	}
 }

@@ -1,0 +1,9 @@
+-main Temperature
+-cp src
+-cp examples
+-dce full
+-lib nodejs
+-lib thx-core
+-js bin/examples/tmp102.js
+--times
+-cmd cp bin/examples/tmp102.js /Volumes/homes/projects/nodes/tmp102.js

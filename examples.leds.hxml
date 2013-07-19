@@ -5,3 +5,4 @@
 -lib nodejs
 -js bin/examples/leds.js
 --times
+-cmd cp bin/examples/leds.js /Volumes/homes/projects/nodes/leds.js

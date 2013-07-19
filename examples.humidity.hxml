@@ -6,3 +6,4 @@
 -lib thx-core
 -js bin/examples/humidity.js
 --times
+-cmd cp bin/examples/humidity.js /Volumes/homes/projects/nodes/humidity.js

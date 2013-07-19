@@ -4,6 +4,7 @@
 -dce full
 -lib nodejs
 -lib thx-core
+
 -lib thx-color
 -js bin/examples/rgbled.js
 --times
